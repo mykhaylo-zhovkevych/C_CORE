@@ -5,7 +5,8 @@
     Output: The result of the processing stage, which is sent out of the system. This could be displayed to the user, stored in a file, or sent over the network. */
 int main() {
     // Declare variables for input
-    double length, width, area;
+    // this idea of just declaring variables not the best because this can have like some garbage values that is obsure
+/*     double length, width, area;
 
     // Input: Get length and width of the rectangle from the user
     printf("Enter the length of the rectangle: ");
@@ -19,5 +20,38 @@ int main() {
     // Output: Display the area of the rectangle
     printf("The area of the rectangle is: %.2f square units\n", area);
 
+    return 0; */
+
+    /* float x = 5.3;
+    double y = -9.8;
+
+    printf("x: ");
+    scanf("%f", &x);
+    printf("x: %f", x); */
+    
+    // char requires the '' and not "" how Strings
+    int speed = 10; 
+    char c = 'd';
+    double x = 2.3;
+    float y = -2.4;
+    // all this is Literal values 
+
+    printf("c: ");
+    scanf("%c", &c);
+    // d is placeholder for int values
+    printf("c: %d\n", c);
+
+    int x = 11, y = 3;
+
+
+/*  int div = x / y;
+    int mod = x % y;
+
+    printf("div: %d\n",  div);
+    printf("mod: %d\n",  mod);
+ */
     return 0;
+
 }
+
+// 39:26 / 5:48:37 // https://www.youtube.com/watch?v=ssJY5MDLjlo&list=LL&index=3&t=1833s
