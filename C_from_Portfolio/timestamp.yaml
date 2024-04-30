@@ -1,0 +1,33 @@
+# ⇨ (0:00) Course introduction 
+⇨ (0:50) Why and how do we program in C?
+⇨ (2:40) Using a development environment
+#lecture01 ⇨ (6:25) Hello, World first C Program
+# ⇨ (16:15) Comments to document our code
+#lecture02 ⇨ (17:44) Input-Processing-Output (IPO) Model example
+#lecture02 ⇨ (28:16) Variable types and using printf() & scanf()
+#lecture02_01 ⇨ (38:31) Arithmetic operators
+#lecture03 ⇨ (42:39) If statements
+#lecture04 ⇨ (53:35) Relational operators
+#lecture04 ⇨ (1:00:41) Logical operators (aka boolean operators)
+#lecture05 ⇨ (1:08:58) While loops
+#lecture06 ⇨ (1:32:31) Do while loops
+#⇨lecture07 (1:37:06) For loops
+⇨ (1:53:40) printf() placeholder fields
+⇨ (1:58:45) Switch statements
+⇨ (2:04:08) Arrays
+⇨ (2:17:50) Strings
+⇨ (2:48:40) Functions 
+⇨ (3:10:25) Passing arrays to functions
+⇨ (3:16:52) Pointers
+⇨ (3:28:08) Pass-by-reference (aka pass-by-pointer)
+⇨ (3:35:22) Pointer notation vs array notation
+⇨ (3:51:07) Dynamically allocated memory (malloc, calloc, realloc, free)
+⇨ (4:15:43) Typedef and struct
+⇨ (4:48:10) 2D arrays
+⇨ (5:01:52) Main function return values 
+⇨ (5:04:31) Command-line arguments
+⇨ (5:15:42) Type casting (aka type conversion)
+⇨ (5:20:05) File I/O
+⇨ (5:35:52) Constants with define vs constant variables
+⇨ (5:40:42) Global scope variables
+⇨ (5:44:35) Accepting user input strings with spaces
