@@ -93,8 +93,16 @@ int main(void) {
     } while (result != 1 || stop < 0);
 
     printf("\n");
-    for (double conv = initial; conv <= stop; conv += step) {
-        printf("%f %f\n", conv, conv * 3.28084); // Convert meters to feet
+    printf("Meters  ==>  Feet");
+    printf("\n");
+    printf("********************\n");
+    for (double conv = initial;
+         conv <= stop; 
+         conv += step) 
+    {
+        printf("%-10.2f %-10.2f\n", 
+        conv, 
+        conv * 3.28084); // Convert meters to feet
     }
 
     return 0;
