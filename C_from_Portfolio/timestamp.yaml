@@ -16,12 +16,12 @@
 #lecture08 ⇨ (1:58:45) Switch statements
 #lecture08 ⇨ (2:04:08) Arrays
 #lecture09 ⇨ (2:17:50) Strings
-⇨ (2:48:40) Functions 
-⇨ (3:10:25) Passing arrays to functions
-⇨ (3:16:52) Pointers
-⇨ (3:28:08) Pass-by-reference (aka pass-by-pointer)
-⇨ (3:35:22) Pointer notation vs array notation
-⇨ (3:51:07) Dynamically allocated memory (malloc, calloc, realloc, free)
+#lecture010 ⇨ (2:48:40) Functions 
+#lecture011 ⇨ (3:10:25) Passing arrays to functions
+#lecture012 ⇨ (3:16:52) Pointers
+#lecture013 ⇨ (3:28:08) Pass-by-reference (aka pass-by-pointer)
+#lecture014 ⇨ (3:35:22) Pointer notation vs array notation
+#lecture014 ⇨ (3:51:07) Dynamically allocated memory (malloc, calloc, realloc, free)
 ⇨ (4:15:43) Typedef and struct
 ⇨ (4:48:10) 2D arrays
 ⇨ (5:01:52) Main function return values 
