@@ -21,8 +21,8 @@
 #lecture012 ⇨ (3:16:52) Pointers
 #lecture013 ⇨ (3:28:08) Pass-by-reference (aka pass-by-pointer)
 #lecture014 ⇨ (3:35:22) Pointer notation vs array notation
-#lecture014 ⇨ (3:51:07) Dynamically allocated memory (malloc, calloc, realloc, free)
-⇨ (4:15:43) Typedef and struct
+#lecture014, lecture015 ⇨ (3:51:07) Dynamically allocated memory (malloc, calloc, realloc, free)
+#lecture016 ⇨ (4:15:43) Typedef and struct
 ⇨ (4:48:10) 2D arrays
 ⇨ (5:01:52) Main function return values 
 ⇨ (5:04:31) Command-line arguments
