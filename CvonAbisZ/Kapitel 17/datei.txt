@@ -1,0 +1,2 @@
+Eine Zeile in der Textdatei
+Die zweite Zeile ist diese hier

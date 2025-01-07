@@ -1,0 +1,1 @@
+Wenn Sie diesen Text lesen können, dann hat das Beispiel fgetc_1.c funktioniert.

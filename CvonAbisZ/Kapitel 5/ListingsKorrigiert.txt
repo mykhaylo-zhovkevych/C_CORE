@@ -1,0 +1,15 @@
+Kapitel 5:stdint.c OK
+Kapitel 5:widechars.c OK
+Kapitel 16:unions2.c OK
+Kapitel 16:structs_1.c OK
+Kapitel 23:caesar-chiffre.c (neu anlegen)
+Kapitel 23:viniegre-chiffre.c (neu anlegen)
+Kapitel 23:enigma.c (neu anlegen)
+Kapitel 23:AES.c (neu anlegen)
+Kapitel 23:RSA.c (neu anlegen)
+Kapitel 23:Diffei-Hellmann.c (neu anlegen)
+Kapitel 23:binint.h (neu anlegen)
+Kapitel 23:AES
+Kapitel 25:socketprx_win.h OK
+Kapitel 28:Alles neu anlegen
+

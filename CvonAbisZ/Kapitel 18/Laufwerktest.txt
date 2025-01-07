@@ -1,0 +1,2 @@
+Dies ist ein Test, der zeigt, auf welchem Windows-Laufwerk diese Datei liegt.
+Wenn der Test geklappt hat, dann sollte so etwas wie "C" oder "D" erscheinen.
