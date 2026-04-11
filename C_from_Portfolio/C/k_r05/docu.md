@@ -1,3 +1,4 @@
+Pointers in C exist because C gives you direct access to memory addresses. A pointer is a variable whose value is the address of an object or function; it can also be a null pointer that points to nothing.
 ``` c
 #include <stdio.h>
 int main() {
