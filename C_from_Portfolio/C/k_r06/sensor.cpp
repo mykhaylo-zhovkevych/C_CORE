@@ -4,7 +4,7 @@
 // think about like printSensors(&sensors[0], 5);
 void printSensors(const int *values, int count) {
     for (int i = 0; i < count; i++) {
-        printf("Sebsor %d = %d\n", i, values[i]);
+        printf("Sensor %d = %d\n", i, values[i]);
     }
 }
 

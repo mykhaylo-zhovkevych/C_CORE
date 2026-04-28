@@ -1,4 +1,4 @@
-the order evaluation is not specified for aassociative and commutative operators like * and +; the compiler may rearange a parenthesized computation.
+the order evaluation is not specified for associative and commutative operators like * and +; the compiler may rearange a parenthesized computation.
 If the order must be guaranteed than a simple varible decalration can help with seperation with statements.
 ``` c
 // wrong order 
