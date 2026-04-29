@@ -42,13 +42,12 @@ int Player_can_vote(const Player* self) {
     return self->protected_data->can_vote;
 }
 
-int Player_ban_vote(const Player* self) {
+void Player_ban_vote(Player* self) {
     if (!self->protected_data->is_alive) {
         printf("Player %d is already eliminated and cannot be banned from voting.\n", self->player_id);
-        return 0;
+        return;
     }
     self->protected_data->can_vote = 0;
-    return 1;
 }
 
 int Player_gets_bitten(Player* self) {
