@@ -30,9 +30,9 @@ void destroydb(Database *db) {
 
 void showdb(Database *db) {
     int32 n;
-    printf("cap:\t%d\nnum:%d\n", db->cap, db->num);
+    printf("cap:\t%d\nnum:\t%d\n", db->cap, db->num);
     for (n=0; n < db->num; n++) {
-        printf("%s/%s\n", db->entries[n].dir,db->entries[n].file);
+        printf("%s/%s%c\n", db->entries[n].dir,db->entries[n].file,(db->entries[n].type == dir) ? '/' : 0);
     }
     return;
 }
@@ -58,8 +58,9 @@ bool adddir(Database *db, int8 *path) {
     Entry e;
     int32 fd, n; // file descriptor,unique ID number for folder
     signed int ret;
-    struct linux_dirent *p;
+    struct linux_dirent64 *p;
     int8 buf[102400];
+    int8 *filename;
 
     ret = open($c path, O_RDONLY|O_DIRECTORY);
     if (ret < 1) {
@@ -68,34 +69,48 @@ bool adddir(Database *db, int8 *path) {
     else {
         fd = $4 ret;
     }
-
-    memset($c buf, 0, sizeof(buf));
-    ret = syscall(SYS_getdents, $i fd, buf, (sizeof(buf)-1));
-    if (ret < 0) {
-        close($i fd);
-        return false;
-    }
-    n = ret;
-
-    for (p = (struct linux_dirent *)buf; n > 0;
-        //(d_reclen in modern systems) exactly how many bytes long this specific record is
-        n -= p->d_reclen, p = (struct linux_dirent *)(($1 p) + p->d_reclen)) {
-            bzero($1 &e, sizeof(struct s_entry));
-            strncpy($c e.dir, $c path, 63);
-            strncpy($c e.file, $c p->d_name, 31);
-            addtodb(db, e);
+    do {
+        memset($c buf, 0, sizeof(buf));
+        // Read directory entries from this file descriptor into buf
+        ret = syscall(SYS_getdents64, $i fd, &buf[0], (sizeof(buf)-1));
+        if (ret < 0) {
+            close($i fd);
+            return false;
         }
+        else if (ret == 0)
+            break;
+        n = ret;
+
+        // cast the pointer type
+        for (p = (struct linux_dirent64 *)&buf[0]; n > 0;
+            filename = p->d_name;
+            // Aliases not defined
+            if (onedot(filename) || twodots(filename))
+                continue;
+            //(d_reclen in modern systems) exactly how many bytes long this specific record is
+            n -= p->d_reclen, p = (struct linux_dirent64 *)(($1 p) + p->d_reclen)) {
+                memset(&e, 0, sizeof e);
+
+                if (p->d_type & DT_REG) {
+                    e.type = file;
+                    strncpy($c e.dir, $c path, 63);
+                    strncpy($c e.file, $c p->d_name, 31);
+                    addtodb(db, e);
+                }
+                else if (p->d_type & DT_DIR) {
+                    e.type = dir;
+                    strncpy($c e.dir, $c path, 63);
+                    strncpy($c e.file, $c p->d_name, 31);
+                    addtodb(db, e);
+                }
+            }
+        } while (true);
     close($i fd);
     return true;
 }
 
 int main(int argc, char *argv[]) {
     Database *db;
-    // Entry e1, e2;
-    // strncpy($c e1.dir, "/tmp", 63);
-    // strncpy($c e2.dir, "/tmp", 63);
-    // strncpy($c e1.file, "FILE1.txt", 31);
-    // strncpy($c e2.file, "anotherfile.txt", 31);
 
     db = mkdatabase();
     adddir(db, $1 "/tmp");
