@@ -20,6 +20,9 @@ typedef unsigned short int int16;
 typedef unsigned int int32;
 typedef unsigned long long int int64;
 
+#define onedot(x) ((*x == '.') && !(*(x+1)))
+#define twodots(x) ((*x == '.') && (*(x+1) == '.') && !(*(x+2)))
+
 #define Blocksize 50000
 
 #define $1 (int8 *)
@@ -52,7 +55,8 @@ struct s_database {
     int32 num;
 };
 typedef struct s_database Database;
-
+// function pointer
+typedef bool (*function)(Entry);
 struct linux_dirent64 {
     unsigned long long d_ino;
     long long d_off;
@@ -62,7 +66,9 @@ struct linux_dirent64 {
 };
 
 // prototypes
+Database *filter(Database*, function);
 Database *mkdatabase();
+bool iself(Entry);
 bool adddir(Database*, int8*);
 void addtodb(Database*, Entry);
 void destroydb(Database*);
