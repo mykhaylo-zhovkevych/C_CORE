@@ -38,14 +38,38 @@ void addbook(char *title, int pages) {
     p->next = new;
 }
 
+int rmbook(char *searchstr) {
+    Book *b, *bh;
+
+    for (b=first; b; bh=b, b=b->next) {
+        // searchstr NULL is false
+        if (!searchstr || !strcmp(searchstr, b->title)) {
+            if (first == b) {
+                first = first->next;
+            }
+            else {
+                bh->next = (bh ->next) ? b-> next : 0;
+            }
+            free(b);
+            numBooks--;
+            return 0;
+        }
+    }
+    return 1;
+}
+
 int main() {
 
     first = 0;
     numBooks = 0;
 
+    addbook("the tao te ching", 3500);
     addbook("the bible", 3500);
     addbook("the tora", 1000);
     addbook("the koran", 500);
+
+    // removes first book
+    rmbook(NULL);
 
     printf("%d\n", numBooks);
 
