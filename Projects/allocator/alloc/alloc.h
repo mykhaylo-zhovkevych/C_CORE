@@ -17,6 +17,9 @@ typedef int32 word;
 
 #define packed __attribute__((__packed__))
 #define unused __attribute__((__unused__))
+#define Maxwords ((1024*1024*1024/4)-1)
+
+#define ErrNoMem 1
 
 #define $1 (int8 *)
 #define $2 (line16)
@@ -28,11 +31,15 @@ typedef int32 word;
 #define $v (void *)
 #define $h (header *)
 
+#define reterr(x) errno = (x); return $v 0
+
 struct packed s_header {
     word w:30;
-    bool alloced:1;
+    bool allocated:1;
     bool unused reserved:1;
 };
 typedef struct packed s_header header;
 
+void *alloc(int32);
+void *mkalloc(word, header*);
 int main(int,char**);
