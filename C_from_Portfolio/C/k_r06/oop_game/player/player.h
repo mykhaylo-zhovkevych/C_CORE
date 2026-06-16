@@ -5,7 +5,7 @@ typedef enum {
     BEAR, 
     ACTIVIST,
     CLAIRVOYANT,
-    HEALVER,
+    HEALER,
     TOWNSPERSON,
     ROLE_COUNT
 } Role;
@@ -32,5 +32,10 @@ int Player_is_bitten(const Player* self);
 
 // Does not act on a Player instance (static method)
 const char* Player_role_to_string(Role role);
+
+void Player_dtor(Player* self) {
+    free(self->protected_data);
+    free(self);
+}
 
 #endif
