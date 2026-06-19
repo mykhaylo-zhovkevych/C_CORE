@@ -4,9 +4,7 @@
 
 #ifndef Server_h
 #define Server_h
-
 #include <netinet/in.h>
-
 
 struct Server {
     int domain;

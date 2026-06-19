@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "Server.h"
 #include <stdlib.h>
-#include <stdlib.h>
 
 struct Server server_constructor(int domain, int service, int protocol, in_addr_t interface, int port, int backlog, void(*launch)(struct Server *server)) {
+    // Local structure variable
     struct Server server;
 
     server.domain = domain;
@@ -21,7 +21,7 @@ struct Server server_constructor(int domain, int service, int protocol, in_addr_
     // Socket allows OS to operate with network
     server.socket = socket(domain, service, protocol);
     if (server.socket == 0) {
-        perror("Failed to connect socket...\n");
+        perror("Failed to create a socket...\n");
         exit(1);
     }
     // Binding a socket to the network
@@ -30,6 +30,7 @@ struct Server server_constructor(int domain, int service, int protocol, in_addr_
         exit(1);
     }
 
+    // Change to a listening Socket
     if ((listen(server.socket, server.backlog)) < 0) {
         perror("Failed to start listening");
         exit(1);
