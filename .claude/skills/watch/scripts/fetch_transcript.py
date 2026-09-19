@@ -110,6 +110,15 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("url")
     parser.add_argument("--lang", default="en")
+    parser.add_argument(
+        "--cookies",
+        default=None,
+        help=(
+            "Path to a Netscape-format cookies.txt for youtube.com, used only "
+            "as a fallback when a video is gated behind YouTube's bot-check. "
+            "Caller is responsible for deleting this file after the run."
+        ),
+    )
     args = parser.parse_args()
 
     try:
@@ -131,11 +140,18 @@ def main():
             "quiet": True,
             "no_warnings": True,
         }
+        if args.cookies:
+            ydl_opts["cookiefile"] = args.cookies
         try:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 info = ydl.extract_info(args.url, download=True)
         except Exception as e:
-            print(json.dumps({"error": f"failed to fetch video/captions: {e}"}))
+            msg = str(e)
+            bot_check = "Sign in to confirm you" in msg and "bot" in msg
+            print(json.dumps({
+                "error": f"failed to fetch video/captions: {msg}",
+                "bot_check": bot_check,
+            }))
             sys.exit(1)
 
         vtt_files = glob.glob(os.path.join(tmp, "*.vtt"))
