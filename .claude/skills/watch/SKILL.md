@@ -43,6 +43,38 @@ is long, then read/chunk it from there.
 - `"no captions found"` → the video has no manual or auto-generated
   captions in the requested language. Tell the user; don't attempt
   audio-based transcription (out of scope for this skill).
+- `"bot_check": true` (message contains "Sign in to confirm you're not a
+  bot") → this specific video is gated by YouTube, not a general network
+  or environment block (sanity-check by trying a different, unrelated
+  video URL if unsure). Don't retry blindly. Instead offer the cookie
+  fallback below — it's opt-in per failure, never automatic.
+
+## Step 1b — Cookie fallback (only after a `bot_check` failure)
+
+This is a live credential handoff, not a persisted setup step. Follow it
+exactly:
+
+1. Ask the user, in chat, to paste the contents of a Netscape-format
+   `cookies.txt` for `youtube.com` (e.g. exported via a "Get cookies.txt"
+   browser extension while logged into YouTube). Tell them plainly: this
+   hands the session a live login cookie, so prefer a throwaway/secondary
+   Google account over a primary one, and the cookie will be used once and
+   discarded, not stored.
+2. Write exactly what they paste to a file in your scratchpad directory
+   (or `mktemp` if none is configured) — e.g.
+   `<scratchpad>/watch_cookies_<random>.txt`. Never write it inside the
+   repo working tree, and never `git add`/commit it under any
+   circumstance.
+3. Re-run the script with `--cookies <that-path>` added:
+   ```bash
+   python3 .claude/skills/watch/scripts/fetch_transcript.py "<youtube-url>" --cookies "<cookie-file-path>"
+   ```
+4. Immediately after that command finishes — success or failure — delete
+   the cookie file (`rm -f <cookie-file-path>`) in the same step. Don't
+   leave it on disk past that single call.
+5. If it still fails with `bot_check`, the cookie itself is likely
+   invalid/expired or the account is also challenged; don't ask for a
+   second paste in the same run — report the failure plainly instead.
 
 ## Step 2 — Summarize at the requested depth
 
